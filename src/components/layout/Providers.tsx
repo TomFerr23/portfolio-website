@@ -6,6 +6,7 @@ import { ScrollTrigger } from "@/lib/gsap-config";
 import CustomCursor from "@/components/ui/CustomCursor";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import Preloader from "@/components/sections/Preloader";
+import Navbar from "@/components/layout/Navbar";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function Providers({ children }: { children: ReactNode }) {
@@ -61,6 +62,7 @@ export function Providers({ children }: { children: ReactNode }) {
       {!reducedMotion && (
         <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
       )}
+      <Navbar />
       <CustomCursor />
       <GrainOverlay />
       <div
