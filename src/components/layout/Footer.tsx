@@ -32,7 +32,7 @@ export default function Footer() {
             letterSpacing: "0.05em",
           }}
         >
-          Local time — {time} CET
+          Local time — {time} CET (NL)
         </span>
 
         <span

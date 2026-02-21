@@ -1,13 +1,49 @@
-import { Project, Skill, SocialLink } from "@/types";
+import { Project, Skill, SocialLink, Experience, Achievement } from "@/types";
 
 export const SITE_CONFIG = {
-  name: "Tommaso Ferrari",
-  role: "Fullstack Developer",
-  email: "hello@tommasoferrari.com",
-  location: "Italy",
-  timezone: "Europe/Rome",
-  tagline: "Building digital experiences that blend design and engineering into seamless, performant products.",
+  name: "Tom Ferrari",
+  role: "CTO & Full Stack Developer",
+  email: "tomferrari.dev@gmail.com",
+  location: "Den Haag, Netherlands",
+  timezone: "Europe/Amsterdam",
+  tagline: "Scaling e-commerce platforms to €1M+ monthly revenue through AI-powered automation, performance optimization, and data-driven growth strategies.",
 };
+
+export const EXPERIENCE: Experience[] = [
+  {
+    role: "CTO",
+    company: "ECP Agency & The Cocoa Circle",
+    period: "February 2023 — Present",
+    highlights: [
+      "Lead dual CTO responsibilities across two companies, managing a team of 8+ and coordinating external agencies",
+      "Architected e-commerce platforms generating €1M+ monthly revenue with 3% conversion rate improvement",
+      "Reduced page load time by 40%, achieving 'Good' Core Web Vitals scores across all properties",
+      "Pioneered AI integration (Claude, GPT-4, Gemini) reducing manual work tasks by 60%",
+      "Achieved first-page rankings for 150+ keywords; improved organic traffic by 25% YoY",
+      "Collaborated on €500K+/month ad campaigns (Meta, TikTok, Pinterest), improving ROAS by 35%",
+    ],
+  },
+  {
+    role: "Full Stack Developer",
+    company: "ECP Agency",
+    period: "February 2022 — February 2023",
+    highlights: [
+      "Developed responsive websites using React, Tailwind CSS, and Shopify theme customisation for e-commerce",
+      "Built custom Shopify and WordPress solutions; implemented CI/CD pipelines reducing deployment time by 70%",
+    ],
+  },
+];
+
+export const ACHIEVEMENTS: Achievement[] = [
+  { value: "€1M+", label: "Monthly Revenue" },
+  { value: "40%", label: "Faster Page Speed" },
+  { value: "+25%", label: "Organic Traffic YoY" },
+  { value: "€500K+", label: "Monthly Ad Spend" },
+  { value: "3%", label: "Conversion Rate Lift" },
+  { value: "8+", label: "Team Size" },
+  { value: "100+", label: "Page 1 Keywords" },
+  { value: "+35%", label: "ROAS Improvement" },
+];
 
 export const PROJECTS: Project[] = [
   {
@@ -51,28 +87,40 @@ export const PROJECTS: Project[] = [
 export const SKILLS: Skill[] = [
   {
     category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "GSAP", "Three.js", "Framer Motion"],
+    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     span: 2,
   },
   {
     category: "Backend",
-    items: ["Node.js", "Python", "Go", "PostgreSQL", "Redis", "GraphQL", "REST APIs"],
+    items: ["Node.js", "REST APIs", "GraphQL"],
   },
   {
-    category: "DevOps & Cloud",
-    items: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform", "Vercel"],
+    category: "AI Tools",
+    items: ["Claude Code", "ChatGPT API", "Gemini", "Perplexity"],
   },
   {
-    category: "Tools & Workflow",
-    items: ["Git", "Figma", "VS Code", "Linux", "Agile", "Testing"],
+    category: "E-commerce",
+    items: ["Shopify", "WooCommerce", "WordPress"],
+  },
+  {
+    category: "Mobile",
+    items: ["Flutter", "React Native"],
+  },
+  {
+    category: "SEO & Analytics",
+    items: ["SEMrush", "Ahrefs", "Screaming Frog", "Google Search Console", "GA4", "Hotjar"],
+    span: 2,
+  },
+  {
+    category: "DevOps & Tools",
+    items: ["Git", "GitHub Actions", "Vercel", "Netlify", "Monday", "Jira"],
     span: 2,
   },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
+  { label: "LinkedIn", url: "https://linkedin.com/in/tommaso-ferrari-it" },
   { label: "GitHub", url: "https://github.com" },
-  { label: "LinkedIn", url: "https://linkedin.com" },
-  { label: "Twitter", url: "https://twitter.com" },
 ];
 
-export const NAV_ITEMS = ["About", "Work", "Skills", "Contact"];
+export const NAV_ITEMS = ["About", "Work", "Experience", "Skills", "Contact"];

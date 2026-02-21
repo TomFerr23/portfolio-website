@@ -101,7 +101,7 @@ export default function Hero() {
               letterSpacing: "-0.02em",
             }}
           >
-            Tommaso
+            Tom
           </div>
         </div>
 

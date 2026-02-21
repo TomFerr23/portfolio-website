@@ -18,3 +18,15 @@ export interface SocialLink {
   label: string;
   url: string;
 }
+
+export interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  highlights: string[];
+}
+
+export interface Achievement {
+  value: string;
+  label: string;
+}

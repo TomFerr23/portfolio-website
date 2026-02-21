@@ -14,7 +14,7 @@ export default function Skills() {
           fontSize: "var(--text-label)",
         }}
       >
-        (03) Expertise
+        (04) Expertise
       </span>
 
       <TextReveal

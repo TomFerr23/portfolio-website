@@ -4,13 +4,13 @@ import { Providers } from "@/components/layout/Providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Tommaso Ferrari | Fullstack Developer",
+  title: "Tom Ferrari | CTO & Full Stack Developer",
   description:
-    "Fullstack developer building digital experiences that blend design and engineering into seamless, performant products.",
+    "CTO and full stack developer scaling e-commerce platforms to €1M+ monthly revenue through AI-powered automation, performance optimization, and data-driven growth.",
   openGraph: {
-    title: "Tommaso Ferrari | Fullstack Developer",
+    title: "Tom Ferrari | CTO & Full Stack Developer",
     description:
-      "Fullstack developer building digital experiences that blend design and engineering into seamless, performant products.",
+      "CTO and full stack developer scaling e-commerce platforms to €1M+ monthly revenue through AI-powered automation, performance optimization, and data-driven growth.",
     type: "website",
   },
 };

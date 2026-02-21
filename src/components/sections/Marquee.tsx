@@ -4,15 +4,15 @@ const ITEMS = [
   "React",
   "Next.js",
   "TypeScript",
+  "Shopify",
   "Node.js",
-  "Python",
-  "Three.js",
-  "PostgreSQL",
-  "AWS",
-  "Docker",
-  "GraphQL",
+  "AI Automation",
   "Tailwind",
-  "GSAP",
+  "GraphQL",
+  "Flutter",
+  "SEO",
+  "Vercel",
+  "E-commerce",
 ];
 
 export default function Marquee() {

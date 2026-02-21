@@ -21,7 +21,7 @@ export default function Contact() {
           fontSize: "var(--text-label)",
         }}
       >
-        (04) Contact
+        (05) Contact
       </span>
 
       <TextReveal

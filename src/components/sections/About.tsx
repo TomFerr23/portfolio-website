@@ -7,8 +7,8 @@ import TextReveal from "@/components/ui/TextReveal";
 
 const STATS = [
   { value: 5, suffix: "+", label: "Years Experience" },
-  { value: 30, suffix: "+", label: "Projects Delivered" },
-  { value: 15, suffix: "+", label: "Happy Clients" },
+  { value: 1, suffix: "M+", label: "Monthly Revenue" },
+  { value: 8, suffix: "+", label: "Team Members" },
 ];
 
 export default function About() {
@@ -100,8 +100,8 @@ export default function About() {
             className="relative aspect-[3/4] overflow-hidden rounded-lg"
           >
             <Image
-              src="/images/placeholder.svg"
-              alt="Tommaso Ferrari"
+              src="/images/profile.jpg"
+              alt="Tom Ferrari"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -125,7 +125,7 @@ export default function About() {
               fontSize: "var(--text-h3)",
             }}
           >
-            I&apos;m Tommaso, a fullstack developer passionate about crafting digital experiences that feel both beautiful and bulletproof.
+            I&apos;m Tom, a CTO and full stack developer who scales e-commerce platforms to €1M+ monthly revenue through technical excellence and AI-powered innovation.
           </TextReveal>
 
           <TextReveal
@@ -138,7 +138,7 @@ export default function About() {
               fontSize: "var(--text-body)",
             }}
           >
-            With expertise spanning frontend interfaces to backend architectures, I build products that don&apos;t just look great — they scale, perform, and delight. Every line of code is written with intention, every pixel placed with purpose.
+            With expertise spanning AI automation, performance optimization, and data-driven growth strategies, I build products that don&apos;t just look great — they convert, perform, and scale. Every line of code is written with intention, every metric tracked with purpose.
           </TextReveal>
 
           {/* Stats */}
