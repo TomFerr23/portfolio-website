@@ -24,7 +24,7 @@ export default function SkillCard({ skill, index }: SkillCardProps) {
         ease: [0.33, 1, 0.68, 1],
       }}
       whileHover={{
-        borderColor: "rgba(212, 165, 116, 0.2)",
+        borderColor: "rgba(116, 148, 212, 0.2)",
         y: -4,
         transition: { duration: 0.3 },
       }}

@@ -55,7 +55,7 @@ export default function ParticleField({ mouseX, mouseY }: ParticleFieldProps) {
     >
       <PointMaterial
         transparent
-        color="#D4A574"
+        color="#7494D4"
         size={0.015}
         sizeAttenuation
         depthWrite={false}
