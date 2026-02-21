@@ -138,7 +138,7 @@ export default function About() {
               fontSize: "var(--text-body)",
             }}
           >
-            With expertise spanning AI automation, performance optimization, and data-driven growth strategies, I build products that don&apos;t just look great — they convert, perform, and scale. Every line of code is written with intention, every metric tracked with purpose.
+            With expertise spanning AI automation, performance optimization, and data-driven growth strategies, I build products that don&apos;t just look great — they convert, perform, and scale. Always ahead of the curve — I stay sharp through curated newsletters, Udemy courses, YouTube deep-dives, and learning from the best minds in tech. Every line of code is written with intention, every metric tracked with purpose.
           </TextReveal>
 
           {/* Stats */}
