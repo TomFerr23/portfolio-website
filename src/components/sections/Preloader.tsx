@@ -112,7 +112,7 @@ export default function Preloader({ isLoading, onComplete }: PreloaderProps) {
             color: "var(--color-text-primary)",
           }}
         >
-          Tommaso Ferrari
+          Tom Ferrari
         </div>
       </div>
     </div>
