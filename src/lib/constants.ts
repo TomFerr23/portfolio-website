@@ -48,12 +48,13 @@ export const ACHIEVEMENTS: Achievement[] = [
 export const PROJECTS: Project[] = [
   {
     id: "01",
-    title: "Project Alpha",
-    description: "A full-stack SaaS platform built with modern web technologies, featuring real-time collaboration and AI-powered insights.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "AI"],
+    title: "Bracelet Customizer",
+    description: "Headless e-commerce product configurator synced with Shopify — real-time inventory, drag-and-drop charm placement, and a conversion-optimized checkout flow that became the brand's primary revenue engine.",
+    tags: ["React", "Shopify API", "Headless Commerce", "Node.js"],
     image: "/images/project-1.jpg",
-    url: "#",
-    year: "2025",
+    video: "/videos/charms-customizer.mp4",
+    url: "https://chfrms.com",
+    year: "2024",
   },
   {
     id: "02",

@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   tags: string[];
   image: string;
+  video?: string;
   url: string;
   year: string;
 }

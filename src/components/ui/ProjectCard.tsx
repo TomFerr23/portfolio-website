@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Project } from "@/types";
@@ -10,14 +11,46 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  // Autoplay video when card enters viewport via IntersectionObserver
+  useEffect(() => {
+    if (!project.video || !cardRef.current) return;
+
+    const card = cardRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            /* autoplay blocked — poster stays visible */
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [project.video]);
+
   return (
     <motion.a
+      ref={cardRef}
       href={project.url}
+      target={project.url.startsWith("http") ? "_blank" : undefined}
+      rel={project.url.startsWith("http") ? "noopener noreferrer" : undefined}
       data-cursor="view"
       className="group relative block h-[50vh] w-[80vw] flex-shrink-0 overflow-hidden rounded-lg md:h-[70vh] md:w-[75vw]"
       whileHover="hover"
     >
-      {/* Image */}
+      {/* Media layer */}
       <motion.div
         className="absolute inset-0"
         variants={{
@@ -25,17 +58,37 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         }}
         transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       >
+        {/* Fallback / poster */}
         <div className="absolute inset-0 bg-bg-elevated">
-          {/* Placeholder gradient when no image */}
           <div className="absolute inset-0 bg-gradient-to-br from-bg-elevated to-bg-secondary" />
         </div>
+
         {project.image && (
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover"
+            className={`object-cover transition-opacity duration-500 ${
+              project.video && isVideoLoaded ? "opacity-0" : "opacity-100"
+            }`}
             sizes="85vw"
+          />
+        )}
+
+        {/* Video overlay */}
+        {project.video && (
+          <video
+            ref={videoRef}
+            src={project.video}
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster={project.image}
+            onCanPlayThrough={() => setIsVideoLoaded(true)}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+              isVideoLoaded ? "opacity-100" : "opacity-0"
+            }`}
           />
         )}
       </motion.div>
