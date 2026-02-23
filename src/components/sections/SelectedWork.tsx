@@ -68,20 +68,40 @@ export default function SelectedWork() {
             ))}
           </div>
 
-          {/* Scroll hint arrow */}
-          <div className="pointer-events-none absolute right-0 top-0 flex h-full w-12 items-center justify-center bg-gradient-to-l from-bg-primary/80 to-transparent">
+          {/* Scroll hint — gradient fade + animated arrow + label */}
+          <div
+            className="pointer-events-none absolute right-0 top-0 flex h-full w-20 flex-col items-center justify-center gap-1"
+            style={{
+              background:
+                "linear-gradient(to left, var(--color-bg-primary) 30%, transparent 100%)",
+            }}
+          >
             <svg
-              className="scroll-hint-arrow h-5 w-5 text-accent"
+              className="h-7 w-7 text-accent"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth={2}
+              strokeWidth={2.5}
+              style={{
+                animation: "nudge-right 1.5s ease-in-out infinite",
+                filter: "drop-shadow(0 0 6px rgba(116,148,212,0.5))",
+              }}
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
+            <span
+              className="text-accent"
+              style={{
+                fontSize: "9px",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                opacity: 0.7,
+                fontFamily: "var(--font-mono)",
+              }}
+            >
+              swipe
+            </span>
           </div>
-
-          {/* Animation defined in globals.css to avoid styled-jsx scoping */}
         </div>
       </section>
     );

@@ -11,89 +11,98 @@ const Scene = dynamic(() => import("./Scene"), {
 export default function HeroScene() {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // On mobile: Aceternity-inspired aurora background
+  // On mobile: Aceternity-inspired aurora + grid + spotlight
   if (isMobile) {
     return (
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-bg-primary" />
 
-        {/* Aurora container - blurred gradient blobs with slow movement */}
+        {/* ── Dot grid pattern (Aceternity style) ── */}
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #7494D4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+
+        {/* ── Aurora gradient blobs — vivid layer ── */}
         <div
           className="absolute inset-0"
-          style={{ filter: "blur(60px) saturate(1.5)", opacity: 0.3 }}
+          style={{ filter: "blur(80px) saturate(2)", opacity: 0.5 }}
         >
-          {/* Primary aurora blob */}
           <div
             className="aurora-blob-1 absolute"
             style={{
-              width: "80vw",
-              height: "80vw",
-              top: "10%",
-              left: "-10%",
+              width: "100vw",
+              height: "100vw",
+              top: "-10%",
+              left: "-30%",
               borderRadius: "50%",
               background:
-                "radial-gradient(circle at 50% 50%, #7494D4 0%, #4A6FA5 40%, transparent 70%)",
+                "radial-gradient(circle at 50% 50%, #7494D4 0%, #4A6FA5 35%, transparent 65%)",
             }}
           />
-
-          {/* Secondary aurora blob */}
           <div
             className="aurora-blob-2 absolute"
             style={{
-              width: "70vw",
-              height: "70vw",
-              top: "25%",
-              right: "-15%",
+              width: "90vw",
+              height: "90vw",
+              top: "15%",
+              right: "-30%",
               borderRadius: "50%",
               background:
-                "radial-gradient(circle at 50% 50%, #9AB4E8 0%, #6B7FBF 35%, transparent 70%)",
+                "radial-gradient(circle at 50% 50%, #9AB4E8 0%, #5B7EC2 30%, transparent 65%)",
             }}
           />
-
-          {/* Deep accent blob */}
           <div
             className="aurora-blob-3 absolute"
             style={{
-              width: "60vw",
-              height: "60vw",
-              bottom: "15%",
-              left: "20%",
+              width: "80vw",
+              height: "80vw",
+              bottom: "0%",
+              left: "10%",
               borderRadius: "50%",
               background:
-                "radial-gradient(circle at 50% 50%, #3D5A80 0%, #2C4A6E 40%, transparent 70%)",
-            }}
-          />
-
-          {/* Highlight shimmer */}
-          <div
-            className="aurora-blob-4 absolute"
-            style={{
-              width: "50vw",
-              height: "50vw",
-              top: "35%",
-              left: "30%",
-              borderRadius: "50%",
-              background:
-                "radial-gradient(circle at 50% 50%, #B8CCEC 0%, #7494D4 30%, transparent 65%)",
+                "radial-gradient(circle at 50% 50%, #3D5A80 0%, #2C4A6E 35%, transparent 65%)",
             }}
           />
         </div>
 
-        {/* Subtle noise overlay for texture */}
+        {/* ── Spotlight beam from top center ── */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="aurora-spotlight absolute"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-            backgroundSize: "128px 128px",
+            top: "-20%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "140vw",
+            height: "80vh",
+            background:
+              "conic-gradient(from 180deg at 50% 0%, transparent 40%, rgba(116,148,212,0.15) 48%, rgba(154,180,232,0.08) 50%, rgba(116,148,212,0.15) 52%, transparent 60%)",
           }}
         />
 
-        {/* Radial vignette to fade edges into dark */}
+        {/* ── Center glow pulse ── */}
+        <div
+          className="aurora-pulse absolute left-1/2 top-[38%]"
+          style={{
+            width: "50vw",
+            height: "50vw",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(116,148,212,0.25) 0%, rgba(116,148,212,0.08) 40%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Radial vignette — fades edges into dark ── */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 40%, transparent 30%, #0A0A0A 100%)",
+              "radial-gradient(ellipse 70% 55% at 50% 40%, transparent 20%, #0A0A0A 100%)",
           }}
         />
       </div>
