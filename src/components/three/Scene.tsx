@@ -6,15 +6,24 @@ import ParticleField from "./ParticleField";
 import { useMousePosition } from "@/hooks/useMousePosition";
 
 export default function Scene() {
-  const { normalizedX, normalizedY } = useMousePosition();
-
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 75 }}
       dpr={[1, 1.5]}
-      gl={{ antialias: false, alpha: true }}
+      gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "transparent" }}
+      frameloop="demand"
     >
+      <SceneInner />
+    </Canvas>
+  );
+}
+
+function SceneInner() {
+  const { normalizedX, normalizedY } = useMousePosition();
+
+  return (
+    <>
       <ParticleField mouseX={normalizedX} mouseY={normalizedY} />
       <EffectComposer>
         <Bloom
@@ -24,6 +33,6 @@ export default function Scene() {
           mipmapBlur
         />
       </EffectComposer>
-    </Canvas>
+    </>
   );
 }

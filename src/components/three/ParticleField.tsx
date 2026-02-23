@@ -14,12 +14,12 @@ export default function ParticleField({ mouseX, mouseY }: ParticleFieldProps) {
   const pointsRef = useRef<THREE.Points>(null);
   const targetRotation = useRef({ x: 0, y: 0 });
 
-  const particleCount = 1500;
+  // Reduced particle count for better performance
+  const particleCount = 800;
 
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
-      // Distribute in a sphere
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       const radius = 3 + Math.random() * 2;
@@ -34,16 +34,17 @@ export default function ParticleField({ mouseX, mouseY }: ParticleFieldProps) {
   useFrame((state) => {
     if (!pointsRef.current) return;
 
-    // Subtle drift
     const time = state.clock.elapsedTime;
     pointsRef.current.rotation.y = time * 0.02;
 
-    // React to mouse
     targetRotation.current.x = mouseY * 0.3;
     targetRotation.current.y = mouseX * 0.3;
 
     pointsRef.current.rotation.x +=
       (targetRotation.current.x - pointsRef.current.rotation.x) * 0.02;
+
+    // Invalidate to keep rendering (since we use frameloop="demand")
+    state.invalidate();
   });
 
   return (

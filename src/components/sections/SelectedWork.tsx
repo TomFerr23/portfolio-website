@@ -4,12 +4,17 @@ import { useRef, useEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { PROJECTS } from "@/lib/constants";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function SelectedWork() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
+    // On mobile: use native horizontal scroll (no GSAP pin)
+    if (isMobile) return;
+
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
@@ -33,15 +38,45 @@ export default function SelectedWork() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
+  // Mobile: native horizontal scroll
+  if (isMobile) {
+    return (
+      <section
+        ref={sectionRef}
+        id="work"
+        className="relative py-[10vh]"
+      >
+        <span
+          className="mb-8 block px-6 uppercase tracking-[0.3em] text-accent"
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "var(--text-label)",
+          }}
+        >
+          (02) Selected Work
+        </span>
+
+        <div
+          className="no-scrollbar flex gap-4 overflow-x-auto px-6 pb-4"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: GSAP horizontal scroll with pin
   return (
     <section
       ref={sectionRef}
       id="work"
       className="relative overflow-hidden"
     >
-      {/* Label */}
       <span
         className="absolute left-6 top-8 z-10 uppercase tracking-[0.3em] text-accent md:left-12 lg:left-[10vw]"
         style={{
@@ -52,7 +87,6 @@ export default function SelectedWork() {
         (02) Selected Work
       </span>
 
-      {/* Horizontal track */}
       <div
         ref={trackRef}
         className="flex h-svh items-center gap-8 pl-6 pr-[10vw] pt-16 md:gap-12 md:pl-12 lg:pl-[10vw]"

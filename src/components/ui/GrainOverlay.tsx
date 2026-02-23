@@ -1,6 +1,13 @@
 "use client";
 
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+
 export default function GrainOverlay() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  // Disable grain on mobile — SVG feTurbulence filter is a GPU hog
+  if (isMobile) return null;
+
   return (
     <div
       className="pointer-events-none fixed inset-0 z-[100] opacity-[0.04]"

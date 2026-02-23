@@ -79,6 +79,18 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Mobile performance */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent 300ms tap delay */
+  html {
+    touch-action: manipulation;
+  }
+}
+
 /* Utility: hide scrollbar */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

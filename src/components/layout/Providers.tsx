@@ -8,15 +8,17 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 import Preloader from "@/components/sections/Preloader";
 import Navbar from "@/components/layout/Navbar";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export function Providers({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const lenisRef = useRef<Lenis | null>(null);
   const reducedMotion = useReducedMotion();
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // Initialize Lenis smooth scroll
+  // Initialize Lenis smooth scroll (desktop only)
   useEffect(() => {
-    if (reducedMotion) {
+    if (reducedMotion || isMobile) {
       setIsLoading(false);
       return;
     }
@@ -45,7 +47,7 @@ export function Providers({ children }: { children: ReactNode }) {
       cancelAnimationFrame(rafId);
       lenisInstance.destroy();
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, isMobile]);
 
   const handlePreloaderComplete = useCallback(() => {
     setIsLoading(false);
@@ -59,7 +61,7 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <>
-      {!reducedMotion && (
+      {!reducedMotion && !isMobile && (
         <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
       )}
       <Navbar />
@@ -67,7 +69,7 @@ export function Providers({ children }: { children: ReactNode }) {
       <GrainOverlay />
       <div
         style={{
-          opacity: isLoading && !reducedMotion ? 0 : 1,
+          opacity: isLoading && !reducedMotion && !isMobile ? 0 : 1,
           transition: "opacity 0.3s ease",
         }}
       >

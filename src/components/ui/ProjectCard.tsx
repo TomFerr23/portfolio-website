@@ -14,7 +14,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <motion.a
       href={project.url}
       data-cursor="view"
-      className="group relative block h-[70vh] w-[85vw] flex-shrink-0 overflow-hidden rounded-lg md:w-[75vw]"
+      className="group relative block h-[50vh] w-[80vw] flex-shrink-0 overflow-hidden rounded-lg md:h-[70vh] md:w-[75vw]"
       whileHover="hover"
     >
       {/* Image */}

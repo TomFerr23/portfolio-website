@@ -5,15 +5,18 @@ import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import TextReveal from "@/components/ui/TextReveal";
 import { EXPERIENCE, ACHIEVEMENTS } from "@/lib/constants";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function Experience() {
   const sectionRef = useRef<HTMLElement>(null);
   const achievementRefs = useRef<(HTMLDivElement | null)[]>([]);
   const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
+    if (isMobile) return; // Skip GSAP scroll animations on mobile
+
     const ctx = gsap.context(() => {
-      // Animate achievement cards
       achievementRefs.current.forEach((el, i) => {
         if (!el) return;
         gsap.fromTo(
@@ -33,7 +36,6 @@ export default function Experience() {
         );
       });
 
-      // Animate experience timeline entries
       timelineRefs.current.forEach((el, i) => {
         if (!el) return;
         gsap.fromTo(
@@ -55,7 +57,7 @@ export default function Experience() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section
@@ -122,7 +124,6 @@ export default function Experience() {
 
       {/* Experience Timeline */}
       <div className="relative">
-        {/* Vertical line */}
         <div className="absolute left-0 top-0 hidden h-full w-px bg-bg-elevated md:block md:left-[120px] lg:left-[160px]" />
 
         <div className="space-y-12 md:space-y-16">
@@ -132,7 +133,6 @@ export default function Experience() {
               ref={(el) => { timelineRefs.current[i] = el; }}
               className="relative md:pl-[160px] lg:pl-[200px]"
             >
-              {/* Period - left side on desktop */}
               <span
                 className="mb-2 block text-text-secondary md:absolute md:left-0 md:top-1 md:mb-0 md:w-[100px] md:text-right lg:w-[140px]"
                 style={{
@@ -145,10 +145,8 @@ export default function Experience() {
                 {exp.period}
               </span>
 
-              {/* Dot on timeline */}
               <div className="absolute left-[-4px] top-2 hidden h-2 w-2 rounded-full bg-accent md:left-[117px] md:block lg:left-[157px]" />
 
-              {/* Content */}
               <div>
                 <h3
                   className="mb-1"
@@ -171,24 +169,39 @@ export default function Experience() {
                 </span>
 
                 <ul className="space-y-2">
-                  {exp.highlights.map((highlight) => (
-                    <motion.li
-                      key={highlight}
-                      className="flex gap-3 text-text-secondary"
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "var(--text-small)",
-                        lineHeight: 1.6,
-                      }}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <span className="mt-2 block h-1 w-1 shrink-0 rounded-full bg-accent/60" />
-                      {highlight}
-                    </motion.li>
-                  ))}
+                  {exp.highlights.map((highlight, j) =>
+                    isMobile ? (
+                      <li
+                        key={highlight}
+                        className="flex gap-3 text-text-secondary"
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-small)",
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        <span className="mt-2 block h-1 w-1 shrink-0 rounded-full bg-accent/60" />
+                        {highlight}
+                      </li>
+                    ) : (
+                      <motion.li
+                        key={highlight}
+                        className="flex gap-3 text-text-secondary"
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-small)",
+                          lineHeight: 1.6,
+                        }}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.4, delay: j * 0.05 }}
+                      >
+                        <span className="mt-2 block h-1 w-1 shrink-0 rounded-full bg-accent/60" />
+                        {highlight}
+                      </motion.li>
+                    )
+                  )}
                 </ul>
               </div>
             </div>
