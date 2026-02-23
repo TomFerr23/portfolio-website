@@ -150,7 +150,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               animate={{ opacity: 1, height: "auto", marginBottom: 12 }}
               exit={{ opacity: 0, height: 0, marginBottom: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="line-clamp-2 max-w-[600px] overflow-hidden text-text-secondary"
+              className="line-clamp-2 max-w-[600px] overflow-hidden text-text-primary/80"
               style={{
                 fontFamily: "var(--font-body)",
                 fontSize: "var(--text-small)",

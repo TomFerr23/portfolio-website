@@ -50,11 +50,11 @@ export const PROJECTS: Project[] = [
     id: "01",
     title: "Bracelet Customizer",
     description: "Headless e-commerce product configurator synced with Shopify — real-time inventory, drag-and-drop charm placement, and a conversion-optimized checkout flow that became the brand's primary revenue engine.",
-    tags: ["React", "Shopify API", "Headless Commerce", "Node.js"],
+    tags: ["React", "Shopify Storefront API", "GraphQL", "Embedded App"],
     image: "/images/project-1.jpg",
     video: "/videos/charms-customizer.mp4",
     url: "#",
-    year: "2024",
+    year: "2025",
   },
   {
     id: "02",
