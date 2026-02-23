@@ -99,11 +99,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
       </motion.div>
 
-      {/* Bottom gradient — always present (light), gets stronger on hover/tap */}
+      {/* Bottom gradient — always present (light), gets stronger + taller on hover/tap */}
       <motion.div
         className="absolute inset-x-0 bottom-0 pointer-events-none"
-        style={{ height: "45%" }}
         animate={{
+          height: showDetails
+            ? isMobile
+              ? "75%"
+              : "55%"
+            : "45%",
           background: showDetails
             ? "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 50%, transparent 100%)"
             : "linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.25) 50%, transparent 100%)",
