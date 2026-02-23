@@ -5,6 +5,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import HeroScene from "@/components/three/HeroScene";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { SITE_CONFIG } from "@/lib/constants";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,11 +14,13 @@ export default function Hero() {
   const line1Ref = useRef<HTMLDivElement>(null);
   const line2Ref = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 3.5 }); // After preloader
+      // No preloader on mobile, so show content faster
+      const tl = gsap.timeline({ delay: isMobile ? 0.3 : 3.5 });
 
       tl.fromTo(
         labelRef.current,

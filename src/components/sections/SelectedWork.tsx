@@ -58,13 +58,38 @@ export default function SelectedWork() {
           (02) Selected Work
         </span>
 
-        <div
-          className="no-scrollbar flex gap-4 overflow-x-auto px-6 pb-4"
-          style={{ WebkitOverflowScrolling: "touch" }}
-        >
-          {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
-          ))}
+        <div className="relative">
+          <div
+            className="no-scrollbar flex gap-4 overflow-x-auto px-6 pb-4"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
+            {PROJECTS.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} />
+            ))}
+          </div>
+
+          {/* Scroll hint arrow */}
+          <div className="pointer-events-none absolute right-0 top-0 flex h-full w-12 items-center justify-center bg-gradient-to-l from-bg-primary/80 to-transparent">
+            <svg
+              className="scroll-hint-arrow h-5 w-5 text-accent"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+
+          <style jsx>{`
+            @keyframes nudge-right {
+              0%, 100% { transform: translateX(0); opacity: 0.6; }
+              50% { transform: translateX(4px); opacity: 1; }
+            }
+            .scroll-hint-arrow {
+              animation: nudge-right 2s ease-in-out infinite;
+            }
+          `}</style>
         </div>
       </section>
     );
