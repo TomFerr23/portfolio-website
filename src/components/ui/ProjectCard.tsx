@@ -47,14 +47,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       target={project.url.startsWith("http") ? "_blank" : undefined}
       rel={project.url.startsWith("http") ? "noopener noreferrer" : undefined}
       data-cursor="view"
-      className="group relative block h-[50vh] w-[80vw] flex-shrink-0 overflow-hidden rounded-lg md:h-[70vh] md:w-[75vw]"
+      className="group relative block w-[85vw] flex-shrink-0 overflow-hidden rounded-lg md:w-[70vw]"
+      style={{ aspectRatio: "3024 / 1534" }}
       whileHover="hover"
     >
       {/* Media layer */}
       <motion.div
         className="absolute inset-0"
         variants={{
-          hover: { scale: 1.05 },
+          hover: { scale: 1.03 },
         }}
         transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       >
@@ -68,14 +69,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={project.title}
             fill
-            className={`object-cover transition-opacity duration-500 ${
+            className={`object-contain transition-opacity duration-500 ${
               project.video && isVideoLoaded ? "opacity-0" : "opacity-100"
             }`}
             sizes="85vw"
           />
         )}
 
-        {/* Video overlay — object-contain so the full UI is visible */}
+        {/* Video overlay */}
         {project.video && (
           <video
             ref={videoRef}
@@ -93,73 +94,79 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
       </motion.div>
 
-      {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/80 via-transparent to-transparent" />
-
-      {/* Content overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-        <span
-          className="mb-2 block text-accent"
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "var(--text-label)",
-            letterSpacing: "0.1em",
-          }}
-        >
-          {project.id}
-        </span>
-
-        <h3
-          className="mb-3"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "var(--text-h2)",
-            fontWeight: 600,
-            lineHeight: 1.1,
-          }}
-        >
-          {project.title}
-        </h3>
-
-        {project.description && (
-          <p
-            className="mb-4 line-clamp-2 max-w-[600px] text-text-secondary"
+      {/* Bottom content bar — solid dark background for readability */}
+      <div
+        className="absolute bottom-0 left-0 right-0 backdrop-blur-md"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.88) 60%, rgba(10,10,10,0) 100%)",
+          paddingTop: "3rem",
+        }}
+      >
+        <div className="px-6 pb-6 md:px-10 md:pb-8">
+          <span
+            className="mb-2 block text-accent"
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "var(--text-small)",
-              lineHeight: 1.5,
+              fontFamily: "var(--font-mono)",
+              fontSize: "var(--text-label)",
+              letterSpacing: "0.1em",
             }}
           >
-            {project.description}
-          </p>
-        )}
+            {project.id}
+          </span>
 
-        <div className="mb-3 flex flex-wrap gap-3">
-          {project.tags.map((tag) => (
+          <h3
+            className="mb-2"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "var(--text-h3)",
+              fontWeight: 600,
+              lineHeight: 1.1,
+            }}
+          >
+            {project.title}
+          </h3>
+
+          {project.description && (
+            <p
+              className="mb-3 line-clamp-2 max-w-[600px] text-text-secondary"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "var(--text-small)",
+                lineHeight: 1.5,
+              }}
+            >
+              {project.description}
+            </p>
+          )}
+
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-text-secondary"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "var(--text-label)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+            <span className="text-text-secondary/40">·</span>
             <span
-              key={tag}
               className="text-text-secondary"
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "var(--text-label)",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
               }}
             >
-              {tag}
+              {project.year}
             </span>
-          ))}
+          </div>
         </div>
-
-        <span
-          className="text-text-secondary"
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "var(--text-label)",
-          }}
-        >
-          {project.year}
-        </span>
       </div>
     </motion.a>
   );
