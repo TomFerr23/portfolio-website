@@ -99,3 +99,90 @@ html.lenis body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Aurora hero background - mobile */
+@keyframes aurora-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10%, 5%) scale(1.1);
+  }
+  50% {
+    transform: translate(-5%, 15%) scale(0.95);
+  }
+  75% {
+    transform: translate(15%, -5%) scale(1.05);
+  }
+}
+
+@keyframes aurora-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-15%, 10%) scale(1.08);
+  }
+  50% {
+    transform: translate(10%, -10%) scale(1.12);
+  }
+  75% {
+    transform: translate(-5%, -15%) scale(0.92);
+  }
+}
+
+@keyframes aurora-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(20%, -10%) scale(1.15);
+  }
+  66% {
+    transform: translate(-15%, 10%) scale(0.9);
+  }
+}
+
+@keyframes aurora-4 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-10%, 10%) scale(1.2) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+.aurora-blob-1 {
+  animation: aurora-1 15s ease-in-out infinite;
+  will-change: transform;
+}
+.aurora-blob-2 {
+  animation: aurora-2 18s ease-in-out infinite;
+  will-change: transform;
+}
+.aurora-blob-3 {
+  animation: aurora-3 20s ease-in-out infinite;
+  will-change: transform;
+}
+.aurora-blob-4 {
+  animation: aurora-4 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Scroll hint arrow - mobile */
+@keyframes nudge-right {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+}
+
+.scroll-hint-arrow {
+  animation: nudge-right 2s ease-in-out infinite;
+}

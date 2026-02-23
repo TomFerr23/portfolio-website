@@ -81,15 +81,7 @@ export default function SelectedWork() {
             </svg>
           </div>
 
-          <style jsx>{`
-            @keyframes nudge-right {
-              0%, 100% { transform: translateX(0); opacity: 0.6; }
-              50% { transform: translateX(4px); opacity: 1; }
-            }
-            .scroll-hint-arrow {
-              animation: nudge-right 2s ease-in-out infinite;
-            }
-          `}</style>
+          {/* Animation defined in globals.css to avoid styled-jsx scoping */}
         </div>
       </section>
     );
