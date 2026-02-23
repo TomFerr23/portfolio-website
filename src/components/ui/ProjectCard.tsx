@@ -2,8 +2,9 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/types";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface ProjectCardProps {
   project: Project;
@@ -14,8 +15,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLAnchorElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // Autoplay video when card enters viewport via IntersectionObserver
+  // Autoplay video when card enters viewport
   useEffect(() => {
     if (!project.video || !cardRef.current) return;
 
@@ -26,9 +29,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         if (!video) return;
 
         if (entry.isIntersecting) {
-          video.play().catch(() => {
-            /* autoplay blocked — poster stays visible */
-          });
+          video.play().catch(() => {});
         } else {
           video.pause();
         }
@@ -40,6 +41,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     return () => observer.disconnect();
   }, [project.video]);
 
+  // Mobile: toggle details on tap
+  const handleClick = (e: React.MouseEvent) => {
+    if (!isMobile) return;
+    if (!showDetails && project.description) {
+      e.preventDefault();
+      setShowDetails(true);
+    }
+    // second tap follows the link (if url is set)
+  };
+
   return (
     <motion.a
       ref={cardRef}
@@ -49,14 +60,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       data-cursor="view"
       className="group relative block w-[85vw] flex-shrink-0 overflow-hidden rounded-lg md:w-[70vw]"
       style={{ aspectRatio: "3024 / 1534" }}
-      whileHover="hover"
+      onClick={handleClick}
+      onHoverStart={() => !isMobile && setShowDetails(true)}
+      onHoverEnd={() => !isMobile && setShowDetails(false)}
     >
       {/* Media layer */}
       <motion.div
         className="absolute inset-0"
-        variants={{
-          hover: { scale: 1.03 },
-        }}
+        animate={{ scale: showDetails ? 1.03 : 1 }}
         transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       >
         {/* Fallback / poster */}
@@ -76,7 +87,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           />
         )}
 
-        {/* Video overlay */}
+        {/* Video */}
         {project.video && (
           <video
             ref={videoRef}
@@ -94,20 +105,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
       </motion.div>
 
-      {/* Dark gradient overlay — bottom only, no blur */}
-      <div
-        className="absolute inset-x-0 bottom-0"
-        style={{
-          height: "50%",
-          background:
-            "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 60%, transparent 100%)",
+      {/* Bottom gradient — always present (light), gets stronger on hover */}
+      <motion.div
+        className="absolute inset-x-0 bottom-0 pointer-events-none"
+        style={{ height: "45%" }}
+        animate={{
+          background: showDetails
+            ? "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 50%, transparent 100%)"
+            : "linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.25) 50%, transparent 100%)",
         }}
+        transition={{ duration: 0.3 }}
       />
 
-      {/* Content overlay */}
+      {/* Always visible: project number + title + pills */}
       <div className="absolute bottom-0 left-0 right-0 px-6 pb-5 md:px-10 md:pb-8">
         <span
-          className="mb-2 block text-accent"
+          className="mb-1 block text-accent"
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "var(--text-label)",
@@ -129,18 +142,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.title}
         </h3>
 
-        {project.description && (
-          <p
-            className="mb-3 line-clamp-2 max-w-[600px] text-text-secondary"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "var(--text-small)",
-              lineHeight: 1.5,
-            }}
-          >
-            {project.description}
-          </p>
-        )}
+        {/* Description — reveals on hover / tap */}
+        <AnimatePresence>
+          {showDetails && project.description && (
+            <motion.p
+              initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+              animate={{ opacity: 1, height: "auto", marginBottom: 12 }}
+              exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="line-clamp-2 max-w-[600px] overflow-hidden text-text-secondary"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "var(--text-small)",
+                lineHeight: 1.5,
+              }}
+            >
+              {project.description}
+            </motion.p>
+          )}
+        </AnimatePresence>
 
         <div className="flex flex-wrap items-center gap-2">
           {project.tags.map((tag) => (
