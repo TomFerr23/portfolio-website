@@ -58,8 +58,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       target={project.url.startsWith("http") ? "_blank" : undefined}
       rel={project.url.startsWith("http") ? "noopener noreferrer" : undefined}
       data-cursor="view"
-      className="group relative block w-[85vw] flex-shrink-0 overflow-hidden rounded-lg md:w-[70vw]"
-      style={{ aspectRatio: "3024 / 1534" }}
+      className="group relative block h-[50vh] w-[80vw] flex-shrink-0 overflow-hidden rounded-lg md:h-auto md:w-[70vw]"
+      style={{ aspectRatio: isMobile ? undefined : "3024 / 1534" }}
       onClick={handleClick}
       onHoverStart={() => !isMobile && setShowDetails(true)}
       onHoverEnd={() => !isMobile && setShowDetails(false)}
@@ -150,7 +150,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               animate={{ opacity: 1, height: "auto", marginBottom: 12 }}
               exit={{ opacity: 0, height: 0, marginBottom: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="line-clamp-2 max-w-[600px] overflow-hidden text-text-primary/80"
+              className="max-w-[600px] overflow-hidden text-text-primary/80"
               style={{
                 fontFamily: "var(--font-body)",
                 fontSize: "var(--text-small)",
