@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     tags: ["React", "Shopify API", "Headless Commerce", "Node.js"],
     image: "/images/project-1.jpg",
     video: "/videos/charms-customizer.mp4",
-    url: "https://chfrms.com",
+    url: "#",
     year: "2024",
   },
   {

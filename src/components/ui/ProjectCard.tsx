@@ -75,7 +75,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           />
         )}
 
-        {/* Video overlay */}
+        {/* Video overlay — object-contain so the full UI is visible */}
         {project.video && (
           <video
             ref={videoRef}
@@ -86,7 +86,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             preload="none"
             poster={project.image}
             onCanPlayThrough={() => setIsVideoLoaded(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ${
               isVideoLoaded ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -110,7 +110,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </span>
 
         <h3
-          className="mb-4"
+          className="mb-3"
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "var(--text-h2)",
@@ -120,6 +120,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         >
           {project.title}
         </h3>
+
+        {project.description && (
+          <p
+            className="mb-4 line-clamp-2 max-w-[600px] text-text-secondary"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-small)",
+              lineHeight: 1.5,
+            }}
+          >
+            {project.description}
+          </p>
+        )}
 
         <div className="mb-3 flex flex-wrap gap-3">
           {project.tags.map((tag) => (
