@@ -13,7 +13,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -41,26 +41,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     return () => observer.disconnect();
   }, [project.video]);
 
-  // Mobile: toggle details on tap
-  const handleClick = (e: React.MouseEvent) => {
-    if (!isMobile) return;
-    if (!showDetails && project.description) {
-      e.preventDefault();
-      setShowDetails(true);
-    }
-    // second tap follows the link (if url is set)
+  // Mobile/desktop: toggle details on tap
+  const handleTap = () => {
+    setShowDetails((prev) => !prev);
   };
 
+  const objectFit = isMobile ? "object-cover" : "object-contain";
+
   return (
-    <motion.a
+    <motion.div
       ref={cardRef}
-      href={project.url}
-      target={project.url.startsWith("http") ? "_blank" : undefined}
-      rel={project.url.startsWith("http") ? "noopener noreferrer" : undefined}
       data-cursor="view"
       className="group relative block h-[50vh] w-[80vw] flex-shrink-0 overflow-hidden rounded-lg md:h-auto md:w-[70vw]"
       style={{ aspectRatio: isMobile ? undefined : "3024 / 1534" }}
-      onClick={handleClick}
+      onClick={isMobile ? handleTap : undefined}
       onHoverStart={() => !isMobile && setShowDetails(true)}
       onHoverEnd={() => !isMobile && setShowDetails(false)}
     >
@@ -80,7 +74,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={project.title}
             fill
-            className={`object-contain transition-opacity duration-500 ${
+            className={`${objectFit} transition-opacity duration-500 ${
               project.video && isVideoLoaded ? "opacity-0" : "opacity-100"
             }`}
             sizes="85vw"
@@ -98,14 +92,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             preload="none"
             poster={project.image}
             onCanPlayThrough={() => setIsVideoLoaded(true)}
-            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ${
+            className={`absolute inset-0 h-full w-full ${objectFit} transition-opacity duration-500 ${
               isVideoLoaded ? "opacity-100" : "opacity-0"
             }`}
           />
         )}
       </motion.div>
 
-      {/* Bottom gradient — always present (light), gets stronger on hover */}
+      {/* Bottom gradient — always present (light), gets stronger on hover/tap */}
       <motion.div
         className="absolute inset-x-0 bottom-0 pointer-events-none"
         style={{ height: "45%" }}
@@ -188,6 +182,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </span>
         </div>
       </div>
-    </motion.a>
+    </motion.div>
   );
 }
