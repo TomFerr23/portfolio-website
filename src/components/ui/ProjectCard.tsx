@@ -94,78 +94,78 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
       </motion.div>
 
-      {/* Bottom content bar — solid dark background for readability */}
+      {/* Dark gradient overlay — bottom only, no blur */}
       <div
-        className="absolute bottom-0 left-0 right-0 backdrop-blur-md"
+        className="absolute inset-x-0 bottom-0"
         style={{
+          height: "50%",
           background:
-            "linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.88) 60%, rgba(10,10,10,0) 100%)",
-          paddingTop: "3rem",
+            "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 60%, transparent 100%)",
         }}
-      >
-        <div className="px-6 pb-6 md:px-10 md:pb-8">
-          <span
-            className="mb-2 block text-accent"
+      />
+
+      {/* Content overlay */}
+      <div className="absolute bottom-0 left-0 right-0 px-6 pb-5 md:px-10 md:pb-8">
+        <span
+          className="mb-2 block text-accent"
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "var(--text-label)",
+            letterSpacing: "0.1em",
+          }}
+        >
+          {project.id}
+        </span>
+
+        <h3
+          className="mb-2"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "var(--text-h3)",
+            fontWeight: 600,
+            lineHeight: 1.1,
+          }}
+        >
+          {project.title}
+        </h3>
+
+        {project.description && (
+          <p
+            className="mb-3 line-clamp-2 max-w-[600px] text-text-secondary"
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "var(--text-label)",
-              letterSpacing: "0.1em",
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-small)",
+              lineHeight: 1.5,
             }}
           >
-            {project.id}
-          </span>
+            {project.description}
+          </p>
+        )}
 
-          <h3
-            className="mb-2"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "var(--text-h3)",
-              fontWeight: 600,
-              lineHeight: 1.1,
-            }}
-          >
-            {project.title}
-          </h3>
-
-          {project.description && (
-            <p
-              className="mb-3 line-clamp-2 max-w-[600px] text-text-secondary"
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "var(--text-small)",
-                lineHeight: 1.5,
-              }}
-            >
-              {project.description}
-            </p>
-          )}
-
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-text-secondary"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-label)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-            <span className="text-text-secondary/40">·</span>
+        <div className="flex flex-wrap items-center gap-2">
+          {project.tags.map((tag) => (
             <span
-              className="text-text-secondary"
+              key={tag}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-text-primary"
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "var(--text-label)",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
               }}
             >
-              {project.year}
+              {tag}
             </span>
-          </div>
+          ))}
+          <span
+            className="pl-1 text-text-secondary"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "var(--text-label)",
+            }}
+          >
+            {project.year}
+          </span>
         </div>
       </div>
     </motion.a>
