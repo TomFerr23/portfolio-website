@@ -128,7 +128,7 @@ export default function Navbar() {
 
           {/* CV Download */}
           <a
-            href="/Tom-Ferrari-CV.pdf"
+            href="/cv-tom.pdf"
             download
             className="rounded-full border border-accent/40 px-4 py-1.5 text-accent transition-colors hover:border-accent hover:bg-accent/10"
             style={{
@@ -209,7 +209,7 @@ export default function Navbar() {
                 );
               })}
               <a
-                href="/Tom-Ferrari-CV.pdf"
+                href="/cv-tom.pdf"
                 download
                 className="mt-2 inline-block w-fit rounded-full border border-accent/40 px-4 py-1.5 text-accent"
                 style={{
