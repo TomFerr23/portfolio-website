@@ -58,11 +58,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "02",
-    title: "Project Beta",
-    description: "E-commerce platform with headless CMS integration, optimized for performance and conversion.",
-    tags: ["React", "Node.js", "Stripe", "Headless CMS"],
+    title: "FinanceFlow",
+    description: "Personal finance dashboard with real-time portfolio tracking, spending analytics by category, currency conversion, and stock watchlist — built as a full-stack side project to sharpen data visualization skills.",
+    tags: ["Next.js", "TypeScript", "Redux", "Tailwind CSS"],
     image: "/images/project-2.jpg",
-    url: "#",
+    url: "https://financeflow-teal-ten.vercel.app",
     year: "2025",
   },
   {

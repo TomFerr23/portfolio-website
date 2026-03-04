@@ -41,9 +41,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     return () => observer.disconnect();
   }, [project.video]);
 
-  // Mobile/desktop: toggle details on tap
-  const handleTap = () => {
-    setShowDetails((prev) => !prev);
+  const hasLink = project.url && project.url !== "#";
+
+  // Mobile: first tap shows details, second tap opens link
+  // Desktop: click opens link (hover already shows details)
+  const handleClick = () => {
+    if (isMobile) {
+      if (!showDetails) {
+        setShowDetails(true);
+      } else if (hasLink) {
+        window.open(project.url, "_blank", "noopener,noreferrer");
+      } else {
+        setShowDetails(false);
+      }
+    } else if (hasLink) {
+      window.open(project.url, "_blank", "noopener,noreferrer");
+    }
   };
 
   const objectFit = isMobile ? "object-cover" : "object-contain";
@@ -53,8 +66,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       ref={cardRef}
       data-cursor="view"
       className="group relative block h-[50vh] w-[80vw] flex-shrink-0 overflow-hidden rounded-lg md:h-auto md:w-[70vw]"
-      style={{ aspectRatio: isMobile ? undefined : "3024 / 1534" }}
-      onClick={isMobile ? handleTap : undefined}
+      onClick={handleClick}
+      style={{
+        aspectRatio: isMobile ? undefined : "3024 / 1534",
+        cursor: hasLink ? "pointer" : "default",
+      }}
       onHoverStart={() => !isMobile && setShowDetails(true)}
       onHoverEnd={() => !isMobile && setShowDetails(false)}
     >
