@@ -34,10 +34,10 @@ export default function Preloader({ isLoading, onComplete }: PreloaderProps) {
 
     const counterObj = { value: 0 };
 
-    // Phase 1: Counter 0 -> 100
+    // Phase 1: Counter 0 -> 100 (fast)
     tl.to(counterObj, {
       value: 100,
-      duration: 2,
+      duration: 1,
       ease: "power2.inOut",
       onUpdate: () => {
         if (counter) counter.textContent = Math.round(counterObj.value).toString();
@@ -48,33 +48,33 @@ export default function Preloader({ isLoading, onComplete }: PreloaderProps) {
     tl.to(counter, {
       opacity: 0,
       y: -20,
-      duration: 0.3,
+      duration: 0.2,
       ease: "power2.in",
     });
 
     tl.fromTo(
       name,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-      "-=0.1"
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+      "-=0.05"
     );
 
-    // Phase 3: Hold, then exit
-    tl.to({}, { duration: 0.4 });
+    // Phase 3: Brief hold, then exit
+    tl.to({}, { duration: 0.15 });
 
     tl.to(container, {
       clipPath: "inset(0 0 100% 0)",
-      duration: 0.8,
+      duration: 0.6,
       ease: "power3.inOut",
     });
 
-    // Safety fallback: if animation hasn't completed in 6s, force complete
+    // Safety fallback: if animation hasn't completed in 4s, force complete
     const fallback = setTimeout(() => {
       if (isLoading) {
         tl.kill();
         onCompleteRef.current();
       }
-    }, 6000);
+    }, 4000);
 
     return () => {
       clearTimeout(fallback);

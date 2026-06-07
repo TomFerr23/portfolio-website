@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   email: "tomferrari.dev@gmail.com",
   location: "Den Haag, Netherlands",
   timezone: "Europe/Amsterdam",
-  tagline: "Scaling e-commerce platforms to €1M+ monthly revenue through AI-powered automation, performance optimization, and data-driven growth strategies.",
+  tagline: "I build custom AI solutions with token-optimized architectures that cut costs up to 70%, full-context memory via knowledge graphs and Obsidian, and intelligent automation that helps businesses scale.",
 };
 
 export const EXPERIENCE: Experience[] = [
