@@ -75,6 +75,16 @@ export const PROJECTS: Project[] = [
     url: "https://financeflow-teal-ten.vercel.app",
     year: "2025",
   },
+  {
+    id: "04",
+    title: "Second Brain",
+    description:
+      "A living knowledge graph in Obsidian that connects every note, folder, and link into one interconnected memory. It feeds full, structured context into my AI agents — turning scattered docs into retrievable long-term memory via RAG, so the system always works with complete brand and project context.",
+    tags: ["Obsidian", "Knowledge Graph", "RAG", "Memory", "Markdown"],
+    image: "/images/project-obsidian.jpg",
+    url: "#",
+    year: "2026",
+  },
 ];
 
 export const SKILLS: Skill[] = [
@@ -100,13 +110,13 @@ export const SKILLS: Skill[] = [
     items: ["Flutter", "React Native"],
   },
   {
-    category: "SEO & Analytics",
-    items: ["SEMrush", "Ahrefs", "Screaming Frog", "Google Search Console", "GA4", "Hotjar"],
+    category: "SEO & GEO",
+    items: ["GEO / AI Visibility", "AI Search Optimization", "SEMrush", "Ahrefs", "Screaming Frog", "Google Search Console", "GA4", "Hotjar"],
     span: 2,
   },
   {
-    category: "DevOps & Tools",
-    items: ["Git", "GitHub Actions", "Vercel", "Netlify", "Monday", "Jira"],
+    category: "Workflow & Deploy",
+    items: ["Vibe Coding", "Rapid Prototyping", "Fast Deploy / CI-CD", "Git", "GitHub Actions", "Vercel"],
     span: 2,
   },
 ];
