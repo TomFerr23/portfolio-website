@@ -2,7 +2,7 @@ import { Project, Skill, SocialLink, Experience, Achievement } from "@/types";
 
 export const SITE_CONFIG = {
   name: "Tom Ferrari",
-  role: "CTO & Full Stack Developer",
+  role: "CTO & Full Stack AI Developer",
   email: "tomferrari.dev@gmail.com",
   location: "Den Haag, Netherlands",
   timezone: "Europe/Amsterdam",

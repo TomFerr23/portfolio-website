@@ -288,18 +288,34 @@ export default function Hero() {
         )}
       </AnimatePresence>
 
-      {/* ── Photo — absolute, centered in viewport, behind info but in front of name ── */}
-      <div
-        data-hero="photo"
-        className="absolute left-1/2 top-[18%] z-20 -translate-x-1/2 opacity-0 md:top-[8%]"
-      >
+      {/* ── Photo (mobile) — cropped & centered v2 ── */}
+      <div className="pointer-events-none absolute inset-x-0 top-[15%] z-20 flex translate-x-[3%] justify-center md:hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          data-hero="photo"
+          src="/images/hero-cutout-v2.webp"
+          alt={SITE_CONFIG.name}
+          className="h-[66vh] w-auto opacity-0"
+          style={{
+            aspectRatio: "939 / 1296",
+            objectFit: "contain",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 64%, transparent 78%)",
+            maskImage:
+              "linear-gradient(to bottom, black 64%, transparent 78%)",
+          }}
+        />
+      </div>
+
+      {/* ── Photo (desktop) — original framing ── */}
+      <div className="pointer-events-none absolute inset-x-0 top-[8%] z-20 hidden justify-center md:flex">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          data-hero="photo"
           src="/images/hero-cutout.webp"
           alt={SITE_CONFIG.name}
-          className="h-[60vh] md:h-[105vh]"
+          className="h-[105vh] w-auto opacity-0"
           style={{
-            width: "auto",
             aspectRatio: "1014 / 1520",
             objectFit: "contain",
             WebkitMaskImage:
@@ -361,7 +377,7 @@ export default function Hero() {
                 color: "var(--color-text-secondary)",
               }}
             >
-              Developer
+              AI Developer
             </span>
           </div>
 
@@ -378,7 +394,7 @@ export default function Hero() {
               color: "var(--color-text-secondary)",
             }}
           >
-            CTO & Full Stack Developer
+            CTO & Full Stack AI Developer
           </div>
         </div>
 
@@ -447,7 +463,7 @@ export default function Hero() {
       {/* ── Scroll ── */}
       <div
         data-hero="bottom"
-        className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 opacity-0 md:bottom-6"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 opacity-0 md:flex"
       >
         <div className="flex flex-col items-center gap-1.5">
           <span
