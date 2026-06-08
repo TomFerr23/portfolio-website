@@ -22,7 +22,16 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-bg-elevated px-6 py-6 md:px-12 lg:px-[10vw]">
+    <footer className="relative border-t border-bg-elevated px-6 py-6 md:px-12 lg:px-[10vw]">
+      {/* Warm-to-cool hairline accent */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent-warm), var(--color-accent), transparent)",
+          opacity: 0.4,
+        }}
+      />
       <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
         <span
           className="text-text-secondary"

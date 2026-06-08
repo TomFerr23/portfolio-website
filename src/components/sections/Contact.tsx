@@ -12,10 +12,23 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="flex min-h-[80vh] flex-col items-center justify-center px-6 py-[15vh] text-center md:px-12 lg:px-[10vw]"
+      className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden px-6 py-[15vh] text-center md:px-12 lg:px-[10vw]"
     >
+      {/* Warm gold glow — echoes the hero horizon, bookending the page */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/2 -z-0 -translate-x-1/2"
+        style={{
+          width: "90vw",
+          height: "45vh",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(ellipse at 50% 100%, rgba(212,165,116,0.08) 0%, rgba(116,148,212,0.04) 40%, transparent 72%)",
+          filter: "blur(40px)",
+        }}
+      />
+
       <span
-        className="mb-8 inline-block uppercase tracking-[0.3em] text-accent"
+        className="relative mb-8 inline-block uppercase tracking-[0.3em] text-accent"
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: "var(--text-label)",
@@ -58,12 +71,12 @@ export default function Contact() {
       <MagneticButton className="mb-12" strength={0.2}>
         <motion.button
           onClick={() => copy(SITE_CONFIG.email)}
-          className="group relative overflow-hidden rounded-full border border-text-secondary/20 px-8 py-4 transition-colors hover:border-accent"
+          className="group relative overflow-hidden rounded-full border border-text-secondary/20 px-8 py-4 transition-colors hover:border-[#D4A574]"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
           <span
-            className="text-text-primary transition-colors group-hover:text-accent"
+            className="text-text-primary transition-colors group-hover:text-[#D4A574]"
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "var(--text-body)",

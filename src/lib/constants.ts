@@ -48,6 +48,16 @@ export const ACHIEVEMENTS: Achievement[] = [
 export const PROJECTS: Project[] = [
   {
     id: "01",
+    title: "Jarvis",
+    description:
+      "A personal AI command center for marketing teams. Generate on-brand images with full brand context preloaded, spin up custom specialist agents (funnels, email, ads, copy, CRO), upload and RAG over your own memory, and route any task to the right specialist — all backed by persistent long-term memory that compounds over time.",
+    tags: ["Next.js", "Claude API", "RAG Memory", "Custom Agents", "Image Gen"],
+    image: "/images/project-jarvis.jpg",
+    url: "#",
+    year: "2026",
+  },
+  {
+    id: "02",
     title: "Bracelet Customizer",
     description: "Headless e-commerce product configurator synced with Shopify — real-time inventory, drag-and-drop charm placement, and a conversion-optimized checkout flow that became the brand's primary revenue engine.",
     tags: ["React", "Shopify Storefront API", "GraphQL", "Embedded App"],
@@ -57,31 +67,13 @@ export const PROJECTS: Project[] = [
     year: "2025",
   },
   {
-    id: "02",
+    id: "03",
     title: "FinanceFlow",
     description: "Personal finance dashboard with real-time portfolio tracking, spending analytics by category, currency conversion, and stock watchlist — built as a full-stack side project to sharpen data visualization skills.",
     tags: ["Next.js", "TypeScript", "Redux", "Tailwind CSS"],
     image: "/images/project-2.jpg",
     url: "https://financeflow-teal-ten.vercel.app",
     year: "2025",
-  },
-  {
-    id: "03",
-    title: "Project Gamma",
-    description: "Interactive data visualization dashboard for real-time analytics and monitoring.",
-    tags: ["D3.js", "WebSocket", "Go", "Dashboard"],
-    image: "/images/project-3.jpg",
-    url: "#",
-    year: "2024",
-  },
-  {
-    id: "04",
-    title: "Project Delta",
-    description: "Mobile-first progressive web app with offline capabilities and native-like experience.",
-    tags: ["PWA", "React Native", "GraphQL", "AWS"],
-    image: "/images/project-4.jpg",
-    url: "#",
-    year: "2024",
   },
 ];
 

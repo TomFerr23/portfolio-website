@@ -109,7 +109,11 @@ export default function About() {
           </div>
           <div
             ref={lineRef}
-            className="mt-4 h-[2px] bg-accent"
+            className="mt-4 h-[2px]"
+            style={{
+              background:
+                "linear-gradient(to right, var(--color-accent), var(--color-accent-warm))",
+            }}
           />
         </div>
 
