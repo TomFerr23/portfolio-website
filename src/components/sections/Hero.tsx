@@ -610,14 +610,14 @@ export default function Hero() {
 
           <div
             data-hero="role-left"
-            className="relative z-30 mt-auto text-center md:hidden"
+            className="relative z-30 mt-auto mb-7 text-center md:hidden"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(0.85rem, 3.5vw, 1.1rem)",
-              fontWeight: 300,
+              fontSize: "clamp(0.9rem, 3.6vw, 1.15rem)",
+              fontWeight: 400,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "var(--color-text-secondary)",
+              color: "rgba(245, 240, 235, 0.9)",
             }}
           >
             {ROLE_FULL}
