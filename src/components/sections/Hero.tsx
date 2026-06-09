@@ -554,9 +554,11 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ── */}
+      {/* No z-index here on purpose: children set their own (name below the
+          photo for the overlap, role + info above it) relative to the section. */}
       <div
         data-hero="content"
-        className="relative z-10 flex h-[calc(100svh-72px)] flex-col"
+        className="relative flex h-[calc(100svh-72px)] flex-col"
       >
         {/* Name */}
         <div className="relative z-10 px-4 pt-[2vh] text-center md:px-8 md:pt-[4vh]">
@@ -610,7 +612,7 @@ export default function Hero() {
 
           <div
             data-hero="role-left"
-            className="relative z-30 mt-auto mb-7 text-center md:hidden"
+            className="relative z-30 mt-auto mb-4 text-center md:hidden"
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(0.9rem, 3.6vw, 1.15rem)",
@@ -628,7 +630,7 @@ export default function Hero() {
         {/* Info block — left stack + right capabilities index */}
         <div
           data-hero="info"
-          className="relative flex flex-col items-center gap-4 px-6 pb-10 text-center md:flex-row md:items-end md:justify-between md:px-[6vw] md:pb-16 md:text-left lg:px-[8vw]"
+          className="relative z-30 flex flex-col items-center gap-4 px-6 pb-10 text-center md:flex-row md:items-end md:justify-between md:px-[6vw] md:pb-16 md:text-left lg:px-[8vw]"
         >
           {/* Left: badge, tagline, CTA */}
           <div className="flex flex-col items-center gap-4 md:items-start">
