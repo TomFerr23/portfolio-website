@@ -617,7 +617,8 @@ export default function Hero() {
               fontWeight: 400,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "rgba(245, 240, 235, 0.9)",
+              color: "rgba(245, 240, 235, 0.82)",
+              textShadow: "0 2px 14px rgba(10, 10, 10, 0.85)",
             }}
           >
             {ROLE_FULL}
